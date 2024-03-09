@@ -24,11 +24,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: calc(100vh - 80px);
+      flex-direction: column; /* Align content vertically */
+      min-height: 100vh; /* Ensure the main container takes at least the full height of the viewport */
     }
 
     .form-container {
       text-align: center;
+      width: 60%; /* Adjust form container width */
     }
 
     label {
@@ -38,7 +40,7 @@
 
     input[type="text"], select {
       padding: 8px;
-      width: 250px;
+      width: 100%; /* Make inputs full width */
       margin-bottom: 20px;
     }
 
@@ -53,13 +55,8 @@
 
     #map {
       height: 400px;
-      width: 600px;
+      width: 100%; /* Make the map container full width */
       margin-top: 20px;
-    }
-
-    .season {
-      text-align: left;
-      align-items: flex-end;
     }
   </style>
 </head>
@@ -81,29 +78,82 @@
     </div>
     <div class="form-container">
       <form id="predictionForm">
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" placeholder="Enter location">
-
         <label for="crop">Crop Type:</label>
         <select id="crop" name="crop">
           <option value="wheat">Wheat</option>
           <option value="corn">Corn</option>
           <option value="rice">Rice</option>
+          <option value="soy">Soy</option>
           <!-- Add more crop options as needed -->
         </select>
 
         <label for="soil">Soil Type:</label>
         <input type="text" id="soil" name="soil" placeholder="Enter soil type">
 
+        <hr> <!-- Grey line -->
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Enter location">
+
         <button type="submit">Predict</button>
       </form>
-
-      <div id="map"></div>
     </div>
+
+    <div id="weather"></div>
+
+    <div id="map"></div>
   </main>
 
   <script>
-    // JavaScript logic for handling form submission and map display will go here
+    function fetchWeather(location) {
+      var apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
+      var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          var weatherDescription = data.weather[0].description;
+          var temperature = data.main.temp;
+          var humidity = data.main.humidity;
+          var windSpeed = data.wind.speed;
+
+          // Update the weather div with weather information
+          document.getElementById('weather').innerHTML = `
+            <h2>Weather Information for ${location}</h2>
+            <p>Description: ${weatherDescription}</p>
+            <p>Temperature: ${temperature}°C</p>
+            <p>Humidity: ${humidity}%</p>
+            <p>Wind Speed: ${windSpeed} m/s</p>
+          `;
+
+          // Update the map's center based on the provided location
+          var lat = data.coord.lat;
+          var lon = data.coord.lon;
+          map.setCenter({ lat: lat, lng: lon });
+          map.setZoom(10); // Set desired zoom level
+        })
+        .catch(error => {
+          console.error('Error fetching weather data:', error);
+        });
+    }
+
+  document.getElementById('predictionForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var location = document.getElementById('location').value;
+    fetchWeather(location);
+  });
+</script>
+
+
+  <script>
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 37.314469, lng: -120.481025 },
+        zoom: 8
+      });
+    }
   </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2KTGfin5E4YZAXGfCXAjshZtXSMe4mYE&callback=initMap" async defer></script>
 </body>
 </html>
