@@ -59,6 +59,11 @@
       margin-top: 20px;
     }
 
+    .season {
+      text-align: left;
+      align-items: flex-end;
+    }
+
     #weather {
       margin-top: 20px; /* Add space between weather and map */
     }
@@ -70,6 +75,16 @@
   </header>
 
   <main>
+    <!-- seasons -->
+    <div class="season">
+      <label for="Season">Season:</label>
+      <select id="Season" name="Season">
+        <option value="Winter">Winter</option>
+        <option value="Spring">Spring</option>
+        <option value="Summer">Summer</option>
+        <option value="Autumn">Autumn</option>
+      </select>
+    </div>
     <div class="form-container">
       <form id="predictionForm">
         <label for="crop">Crop Type:</label>
