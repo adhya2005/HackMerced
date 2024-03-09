@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crop Yield Prediction</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional CSS styles can be added here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+    }
+
+    .form-container {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], select {
+      padding: 8px;
+      width: 250px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #map {
+      height: 400px;
+      width: 600px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Crop Yield Prediction</h1>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <form id="predictionForm">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Enter location">
+
+        <label for="crop">Crop Type:</label>
+        <select id="crop" name="crop">
+          <option value="wheat">Wheat</option>
+          <option value="corn">Corn</option>
+          <option value="rice">Rice</option>
+          <!-- Add more crop options as needed -->
+        </select>
+
+        <label for="soil">Soil Type:</label>
+        <input type="text" id="soil" name="soil" placeholder="Enter soil type">
+
+        <button type="submit">Predict</button>
+      </form>
+
+      <div id="map"></div>
+    </div>
+  </main>
+
+  <script>
+    // JavaScript logic for handling form submission and map display will go here
+  </script>
+</body>
+</html>
