@@ -4,14 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hackathon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #654f72fd; /* Set background color to grey */
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff; /* Set container background color to white */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgb(53, 49, 49);
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Hackathon</h1>
-    <label for="page-select">Select a page:</label>
-    <select id="page-select" onchange="navigate()">
-        <option value="">Select Page</option>
-        <option value="app.html">Crop Prediction</option>
-    </select>
+    <div class="container">
+        <h1>Welcome to Crop Finder</h1>
+        <p>A website user interface that predicts specific crop yields in certain locations based on a weather app API and soil type. The user interface will consist of a typing menu where you will input location, Nitrogen, Phosphorous, Potassium, and Temperature (decided through a weather API), humidity, soil pH value, and rainfall in mm. When a location has been selected, an image of a zoomable map of that area will appear with whatever choices selected and a prediction of that information. The predict button will output if that crop is likely to have a good yield in that environment.</p>
+        <label for="page-select">Select a page:</label>
+        <select id="page-select" onchange="navigate()">
+            <option value="">Select Page</option>
+            <option value="app.html">Crop Prediction</option>
+        </select>
+    </div>
 
     <script>
         function navigate() {
