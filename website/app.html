@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
   <title>Crop Yield Prediction</title>
   <link rel="stylesheet" href="style.css">
   <style>
@@ -63,6 +65,11 @@
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="car-block" id="formatted-address"></div>
+    <div  class="car-block" id="address-components"></div>
+    <div  class="car-block" id="geometry"></div>
+  </div>
   <header>
     <h1>Crop Yield Prediction</h1>
   </header>
@@ -180,51 +187,51 @@
         zoom: globalZoom
       });
 
-    //   const geocoder = new google.mapsgeocoder()
+      const geocoder = new google.mapsgeocoder()
 
-    //   const infowindow = new google.maps.infoWindow()
+      const infowindow = new google.maps.infoWindow()
 
-    //   geocodeLatLng(geocoder, map, infoWindow)
+      geocodeLatLng(geocoder, map, infoWindow)
 
-    //   document.getElementById('submit').addEventListener('click',() => {
+      document.getElementById('submit').addEventListener('click',() => {
 
-    //     geocodeLatLng(geocoder,map,infoWindow);
+        geocodeLatLng(geocoder,map,infoWindow);
 
-    //   });
+      });
 
-    // }
+    }
 
-    // function geocodeLatLng (geocoder, map, infowindow) {
-    //   const input = document.getElementById('latlng').value
+    function geocodeLatLng (geocoder, map, infowindow) {
+      const input = document.getElementById('latlng').value
 
-    //   //split this comas
-    //   const latlngStr = input.split(",", 2)
+      //split this comas
+      const latlngStr = input.split(",", 2)
 
-    //   //latitude and longitude object
+      //latitude and longitude object
 
-    //   const latlng = {
-    //     lat:parseFloat(latlngStr[0]),
-    //     lng:parseFloat(latlngStr[1])
-    //   }
+      const latlng = {
+        lat:parseFloat(latlngStr[0]),
+        lng:parseFloat(latlngStr[1])
+      }
 
-    //   geocoder.geocode({location:latlng})
-    //   .then((response) => {
-    //     console.log(response);
+      geocoder.geocode({location:latlng})
+      .then((response) => {
+        console.log(response);
 
-    //     if(response.results[0]){
-    //       map.setZoom(14)
+        if(response.results[0]){
+          map.setZoom(14)
 
-    //       const marker = new google.map.Marker({
-    //         position:latlng,
-    //         map:map
-    //       })
+          const marker = new google.map.Marker({
+            position:latlng,
+            map:map
+          })
 
-    //       infoWindow.setContent(response.resultsp[0].formatted_address)
+          infoWindow.setContent(response.resultsp[0].formatted_address)
 
-    //       document.getElementById('result').innerHTML = `<h1 style="text-align:center">${response.results[0].formatted_address}</h1>`
+          document.getElementById('result').innerHTML = `<h1 style="text-align:center">${response.results[0].formatted_address}</h1>`
           
-    //     }
-    //   })
+        }
+      })
 
     }
   </script>
@@ -257,7 +264,7 @@
         //log full response
         console.log(response);
 
-        console.log(response.data.results[0].formatted_address)
+        console.log(response.data.results[0].formatted_address);
 
         //formatted address
         var formattedAddress = response.data.results[0].formatted_address;
@@ -305,7 +312,7 @@
       .catch(function(error){
         console.log(error);
       });
-      
+      console.log("end check");
     }
   </script>
 </body>
