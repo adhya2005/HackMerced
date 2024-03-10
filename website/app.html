@@ -123,6 +123,11 @@
   </main>
 
   <script>
+    // lat and long for map
+    let globalLat = 37.314469;
+    let globalLng = -120.481025;
+    let globalZoom = 8;
+
     function fetchWeather(location) {
       var apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
       var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
@@ -171,9 +176,56 @@
     var map;
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 37.314469, lng: -120.481025 },
-        zoom: 8
+        center: { lat: globalLat, lng: globalLng },
+        zoom: globalZoom
       });
+
+    //   const geocoder = new google.mapsgeocoder()
+
+    //   const infowindow = new google.maps.infoWindow()
+
+    //   geocodeLatLng(geocoder, map, infoWindow)
+
+    //   document.getElementById('submit').addEventListener('click',() => {
+
+    //     geocodeLatLng(geocoder,map,infoWindow);
+
+    //   });
+
+    // }
+
+    // function geocodeLatLng (geocoder, map, infowindow) {
+    //   const input = document.getElementById('latlng').value
+
+    //   //split this comas
+    //   const latlngStr = input.split(",", 2)
+
+    //   //latitude and longitude object
+
+    //   const latlng = {
+    //     lat:parseFloat(latlngStr[0]),
+    //     lng:parseFloat(latlngStr[1])
+    //   }
+
+    //   geocoder.geocode({location:latlng})
+    //   .then((response) => {
+    //     console.log(response);
+
+    //     if(response.results[0]){
+    //       map.setZoom(14)
+
+    //       const marker = new google.map.Marker({
+    //         position:latlng,
+    //         map:map
+    //       })
+
+    //       infoWindow.setContent(response.resultsp[0].formatted_address)
+
+    //       document.getElementById('result').innerHTML = `<h1 style="text-align:center">${response.results[0].formatted_address}</h1>`
+          
+    //     }
+    //   })
+
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2KTGfin5E4YZAXGfCXAjshZtXSMe4mYE&callback=initMap" async defer></script>
