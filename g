@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon</title>
+</head>
+<body>
+    <h1>Welcome to the Hackathon</h1>
+    <label for="page-select">Select a page:</label>
+    <select id="page-select" onchange="navigate()">
+        <option value="">Select Page</option>
+        <option value="app.html">Crop Prediction</option>
+    </select>
+
+    <script>
+        function navigate() {
+            var selectedPage = document.getElementById("page-select").value;
+            if (selectedPage) {
+                window.location.href = selectedPage;
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
@@ -253,3 +280,5 @@
   </script>
 </body>
 </html>
+
+
