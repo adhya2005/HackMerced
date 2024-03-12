@@ -245,7 +245,7 @@
 
     }
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2KTGfin5E4YZAXGfCXAjshZtXSMe4mYE&callback=initMap" async defer></script>
+  
   <script>
     src="script.js"
   </script>
@@ -264,7 +264,7 @@
       e.preventDefault();
 
       var location = document.getElementById('location-input').value;
-      axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+     
         params:{
           address:location,
           key: 'AIzaSyD2KTGfin5E4YZAXGfCXAjshZtXSMe4mYE'
